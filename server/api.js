@@ -15,5 +15,8 @@ api.use(bodyParser.urlencoded({
 api.use(bodyParser.json());
 
 require('./users/routes')(api);
+require('./events/routes')(api);
+require('./lectures/routes')(api);
+require('./questions/routes')(api);
 
 module.exports = api;

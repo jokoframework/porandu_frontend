@@ -1,0 +1,12 @@
+<div class="col-md-4" title="{{ detail }}">{{  title  }}</div>
+<div class="col-md-4">{{  author  }}</div>
+<div class="col-md-2">
+  {{ votes }}
+</div>
+<div class="col-md-2">
+   {{#if voted }}
+    <a href="#questions/{{ id }}/downvote">Desvotar</a>
+   {{else }}
+    <a href="#questions/{{ id }}/upvote">Votar</a>
+   {{/if}}
+</div>

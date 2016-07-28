@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Cuando",
+    "detail": "Era C una vez",
+    "author": "ABC",
+    "votes": 1,
+    "voted": false,
+    "lecture_id": "codigo-c"
+  },
+  {
+    "id": 2,
+    "title": "Donde es",
+    "detail": "Era B una vez",
+    "author": "ABC",
+    "votes": 5,
+    "voted": true,
+    "lecture_id": "codigo-c"
+  },
+  {
+    "id": 3,
+    "title": "Que es",
+    "detail": "Era z una vez",
+    "author": "ABC",
+    "votes": 10,
+    "voted": false,
+    "lecture_id": "codigo-c"
+  }
+]

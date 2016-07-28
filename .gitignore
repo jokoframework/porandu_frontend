@@ -6,3 +6,4 @@ nbproject
 node_modules
 npm-debug.log
 *.back
+.idea/*
