@@ -872,7 +872,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div id=\"question-list\">\n\n</div>\n";
+    return "<div class=\"row\">\n  <div class=\"col-md-8 col-md-offset-2 margin-tb-15\">\n    <a id=\"refresh-question-list\" role=\"button\" class=\"text-blue\">Recargar Lista</a>\n  </div>\n</div>\n<div id=\"question-list\">\n\n</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":75}],28:[function(require,module,exports){
@@ -1321,6 +1321,7 @@ module.exports = QuestionListItemView;
  * @type Marionette.CollectionView
  */
 var Marionette           = require('marionette');
+var noty                 = require("lib/notifier");
 var moment               = require('moment');
 var QuestionCollection   = require('models/QuestionCollection');
 var Template             = require('templates/question_list.html');
@@ -1337,10 +1338,10 @@ var QuestionListView = Marionette.ItemView.extend({
         this.collection = new QuestionCollection({
             lecture_id: options.lecture_id
         });
-        setInterval(function(){
-          self.refreshView();
-        }, 15000);
-
+        this.isRefreshByUser = false;
+    },
+    events:{
+      "click #refresh-question-list":"refreshListAction"
     },
     onRender:function(){
       var self = this;
@@ -1358,15 +1359,23 @@ var QuestionListView = Marionette.ItemView.extend({
       var self = this;
       self.collection.fetch({
         success:function(){
+          if(self.isRefreshByUser){
+            noty.showInfoMsg('La lista ha sido recargada');
+          }
           self.render();
         }
       });
+    },
+    refreshListAction:function(e){
+      e.preventDefault();
+      this.isRefreshByUser = true;
+      this.refreshView();
     }
 });
 
 module.exports = QuestionListView;
 
-},{"marionette":"marionette","models/QuestionCollection":11,"moment":78,"templates/question_list.html":27,"views/content/QuestionListItemView":37}],39:[function(require,module,exports){
+},{"lib/notifier":5,"marionette":"marionette","models/QuestionCollection":11,"moment":78,"templates/question_list.html":27,"views/content/QuestionListItemView":37}],39:[function(require,module,exports){
 /**
  * 
  * @type Module marionette|Module marionette

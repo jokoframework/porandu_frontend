@@ -5,6 +5,7 @@
  * @type Marionette.CollectionView
  */
 var Marionette           = require('marionette');
+var noty                 = require("lib/notifier");
 var moment               = require('moment');
 var QuestionCollection   = require('models/QuestionCollection');
 var Template             = require('templates/question_list.html');
@@ -21,10 +22,10 @@ var QuestionListView = Marionette.ItemView.extend({
         this.collection = new QuestionCollection({
             lecture_id: options.lecture_id
         });
-        setInterval(function(){
-          self.refreshView();
-        }, 15000);
-
+        this.isRefreshByUser = false;
+    },
+    events:{
+      "click #refresh-question-list":"refreshListAction"
     },
     onRender:function(){
       var self = this;
@@ -42,9 +43,17 @@ var QuestionListView = Marionette.ItemView.extend({
       var self = this;
       self.collection.fetch({
         success:function(){
+          if(self.isRefreshByUser){
+            noty.showInfoMsg('La lista ha sido recargada');
+          }
           self.render();
         }
       });
+    },
+    refreshListAction:function(e){
+      e.preventDefault();
+      this.isRefreshByUser = true;
+      this.refreshView();
     }
 });
 
