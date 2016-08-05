@@ -836,22 +836,28 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    return "           <a  class=\"vote-link blue-text\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i>Desvotar</a>\n";
+    return "            Voto\n";
 },"3":function(container,depth0,helpers,partials,data) {
+    return "            Votos\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "           <a  class=\"vote-link blue-text\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i>Desvotar</a>\n";
+},"7":function(container,depth0,helpers,partials,data) {
     return "           <a  class=\"vote-link blue-text\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i>Votar</a>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<div class=\"row\">\n  <div class=\"col-md-8 col-md-offset-2 margin-tb-15\">\n    <div class=\"item-detail\">\n      <div class=\"vote-content\">\n        <span id='total-votes'>"
     + alias4(((helper = (helper = helpers.votes || (depth0 != null ? depth0.votes : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"votes","hash":{},"data":data}) : helper)))
-    + "</span>\n        <span>Votos</span>\n      </div>\n      <h4>"
+    + "</span>\n        <span>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isOne : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "          </span>\n      </div>\n      <h4>"
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h4>\n    </div>\n    <div class=\"item-footer clearfix\">\n      <div class=\"row\">\n        <div class=\"col-md-5 col-md-offset-4\">\n          <span class=\"blue-text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> "
     + alias4(((helper = (helper = helpers.hour || (depth0 != null ? depth0.hour : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"hour","hash":{},"data":data}) : helper)))
     + " hs - "
     + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.fullName : stack1), depth0))
     + "</span>\n        </div>\n        <div class=\"col-md-3\">\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.voted : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.voted : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
     + "        </div>\n      </div>\n    </div>\n  </div>\n</div>\n";
 },"useData":true});
 
@@ -1277,6 +1283,10 @@ var QuestionListItemView = Marionette.ItemView.extend({
      }
      var momentObj = new moment(date);
      this.model.set('hour', momentObj.format('hh:mm'));
+     //Para que aparezca la palabra 'voto' en caso de ser 1
+     if(this.model.get('votes')===1){
+       this.model.set('isOne', true);
+     }
    },
    voteAction:function(e){
      e.preventDefault();

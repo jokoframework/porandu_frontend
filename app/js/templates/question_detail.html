@@ -3,7 +3,13 @@
     <div class="item-detail">
       <div class="vote-content">
         <span id='total-votes'>{{ votes }}</span>
-        <span>Votos</span>
+        <span>
+          {{#if isOne }}
+            Voto
+          {{else }}
+            Votos
+          {{/if}}
+          </span>
       </div>
       <h4>{{  title  }}</h4>
     </div>

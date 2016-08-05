@@ -227,7 +227,9 @@ a:hover, a:focus{
 #app-container{
   background-color: #f7f7f7 !important;
 }
-
+#events li{
+  text-decoration: none;
+}
 #lectures{
   margin-top: 20px;
 }
@@ -267,6 +269,9 @@ a:hover, a:focus{
 
 /*Mediaquery*/
 @media screen and (max-width: 510px) {
+    .time-label{
+      top:0;
+    }
     #new-question{
       display: block;
       text-align: center;
