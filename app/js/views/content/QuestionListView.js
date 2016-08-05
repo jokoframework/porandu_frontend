@@ -16,10 +16,15 @@ var QuestionListItemView = require('views/content/QuestionListItemView');
 var QuestionListView = Marionette.ItemView.extend({
     template : Template ,
     initialize: function (options) {
+        var self = this;
         this.lectureId  = options.lecture_id;
         this.collection = new QuestionCollection({
             lecture_id: options.lecture_id
         });
+        setInterval(function(){
+          self.refreshView();
+        }, 15000);
+
     },
     onRender:function(){
       var self = this;
@@ -32,10 +37,6 @@ var QuestionListView = Marionette.ItemView.extend({
         });
         $questionsList.append(questionListItemView.render().el);
       });
-
-      setTimeout(function(){
-        self.refreshView();
-      }, 5000);
     },
     refreshView:function(){
       var self = this;
@@ -44,7 +45,6 @@ var QuestionListView = Marionette.ItemView.extend({
           self.render();
         }
       });
-
     }
 });
 
