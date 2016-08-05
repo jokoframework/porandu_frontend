@@ -264,3 +264,13 @@ a:hover, a:focus{
 #questions-list-content{
   margin-top: 15px;
 }
+
+/*Mediaquery*/
+@media screen and (max-width: 510px) {
+    #new-question{
+      display: block;
+      text-align: center;
+      position: relative;
+      width: 200px;
+    }
+}
