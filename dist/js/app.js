@@ -754,9 +754,9 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<li>\n  <a href=\"#"
+  return "<li class=\"event-item-list\">\n  <a href=\"#"
     + alias4(((helper = (helper = helpers.eventId || (depth0 != null ? depth0.eventId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"eventId","hash":{},"data":data}) : helper)))
-    + "\"><h4>"
+    + "\" class=\"event-item-link\"><h4>"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
     + "</h4></a>\n</li>\n";
 },"useData":true});
@@ -1284,9 +1284,8 @@ var QuestionListItemView = Marionette.ItemView.extend({
      var momentObj = new moment(date);
      this.model.set('hour', momentObj.format('hh:mm'));
      //Para que aparezca la palabra 'voto' en caso de ser 1
-     if(this.model.get('votes')===1){
-       this.model.set('isOne', true);
-     }
+     this.validateVoteLabel();
+
    },
    voteAction:function(e){
      e.preventDefault();
@@ -1300,7 +1299,15 @@ var QuestionListItemView = Marionette.ItemView.extend({
         self.render();
        }
      });
+   },
+   validateVoteLabel:function(){
+     if(this.model.get('votes')===1){
+       this.model.set('isOne', true);
+     }else{
+       this.model.set('isOne', false);
+     }
    }
+
 
 });
 

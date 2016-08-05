@@ -133,6 +133,14 @@ a:hover, a:focus{
   clear: none!important;
 }
 
+.event-item-list{
+  list-style: none;
+}
+
+.event-item-link{
+  cursor: pointer;
+}
+
 .event-image{
   max-height: 300px;
   margin: 0 auto;

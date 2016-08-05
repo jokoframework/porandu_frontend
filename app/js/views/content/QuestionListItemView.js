@@ -45,9 +45,8 @@ var QuestionListItemView = Marionette.ItemView.extend({
      var momentObj = new moment(date);
      this.model.set('hour', momentObj.format('hh:mm'));
      //Para que aparezca la palabra 'voto' en caso de ser 1
-     if(this.model.get('votes')===1){
-       this.model.set('isOne', true);
-     }
+     this.validateVoteLabel();
+
    },
    voteAction:function(e){
      e.preventDefault();
@@ -61,7 +60,15 @@ var QuestionListItemView = Marionette.ItemView.extend({
         self.render();
        }
      });
+   },
+   validateVoteLabel:function(){
+     if(this.model.get('votes')===1){
+       this.model.set('isOne', true);
+     }else{
+       this.model.set('isOne', false);
+     }
    }
+
 
 });
 
