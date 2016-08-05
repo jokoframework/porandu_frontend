@@ -92,6 +92,9 @@ App.vent.on('login:show', App.showLoginPage);
 App.vent.on('index:show', App.showEventPage);
 App.vent.on('lectures:show', App.showLecturePage);
 App.vent.on('questions:show', App.showQuestionPage);
+//App.vent.on('questions:vote', App.showQuestionPage);
+
+
 
 App.on("start", function () {
 

@@ -1,5 +1,24 @@
-<div class="col-md-4">{{  code  }}</div>
-<div class="col-md-4">{{  description  }}</div>
-<div class="col-md-4">
-  <a href="#{{ event_id }}/{{ code }}"><img src="{{ image_url }}" alt="{{ description }}"></a>
+<div class="item-container row">
+  <div class="col-xs-12 col-sm-8">
+    <div class="item-detail">
+      <span class="time-label">{{hour}} hs</span>
+      <a href="#{{ event.eventId }}/{{ lectureId }}" class="lecture-link"> <h4>{{  description }}</h4> </a>
+      <p></p>
+    </div>
+    <div class="item-footer clearfix">
+      <div class="row">
+         <div class="col-xs-12 col-sm-6">
+           <a href="{{ author.linkSocial }}" class="blue-text" target="_blank">
+             <i class="fa fa-twitter " aria-hidden="true"></i>
+             <span class="blue-text">{{ author.fullName }}</span>
+           </a>
+         </div>
+         <div class="col-xs-12 col-sm-6 ">
+           <a id="lecture-{{lectureId}}" name="lecture-{{lectureId}}" role="button">
+              <span class="blue-text"><i class="fa fa-thumbs-o-up blue-text font-s-20px"></i></span>
+            </a>
+         </div>
+      </div>
+    </div>
+  </div>
 </div>

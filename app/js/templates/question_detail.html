@@ -1,12 +1,25 @@
-<div class="col-md-4" title="{{ detail }}">{{  title  }}</div>
-<div class="col-md-4">{{  author  }}</div>
-<div class="col-md-2">
-  {{ votes }}
-</div>
-<div class="col-md-2">
-   {{#if voted }}
-    <a href="#questions/{{ id }}/downvote">Desvotar</a>
-   {{else }}
-    <a href="#questions/{{ id }}/upvote">Votar</a>
-   {{/if}}
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 margin-tb-15">
+    <div class="item-detail">
+      <div class="vote-content">
+        <span id='total-votes'>{{ votes }}</span>
+        <span>Votos</span>
+      </div>
+      <h4>{{  title  }}</h4>
+    </div>
+    <div class="item-footer clearfix">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+          <span class="blue-text"><i class="fa fa-clock-o" aria-hidden="true"></i> {{hour}} hs - {{  author.fullName  }}</span>
+        </div>
+        <div class="col-md-3">
+          {{#if voted }}
+           <a  class="vote-link blue-text"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>Desvotar</a>
+          {{else }}
+           <a  class="vote-link blue-text"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>Votar</a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -14,8 +14,7 @@ var config = require('config');
  */
 var EventCollection = Backbone.Collection.extend({
     model: EventModel,
-    url: config.api + '/events'
+    url: config.api + '/evens'
 });
 
 module.exports = EventCollection;
-

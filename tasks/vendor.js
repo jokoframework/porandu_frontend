@@ -1,8 +1,10 @@
-var gulp    = require('gulp');
-var plumber = require('gulp-plumber');
-var concat  = require('gulp-concat');
-var paths   = require('./paths');
-
+var gulp     = require('gulp');
+var plumber  = require('gulp-plumber');
+var concat   = require('gulp-concat');
+var config   = require('./config');
+var $        = require('gulp-load-plugins')();
+var uglify   = require('gulp-uglify');
+var minifyCSS = require('gulp-minify-css');
 
 // Compilamos archivos CSS de terceros (ejemplo: boostrap.css) y 
 // los metemos todos en un mismo archivo: vendor.css
@@ -10,17 +12,17 @@ var paths   = require('./paths');
 // Copiaremos ese archivo a: paths.dest + '/css'
 gulp.task('vendor-styles', function() {
   var stream = gulp.src([
-      paths.vendor + 'styles/bootstrap.css',
-      paths.vendor + 'styles/bootstrap-theme.css'
+      config.vendor.src + '/styles/bootstrap.css',
+      config.vendor.src + '/styles/bootstrap-theme.css',
+	  config.vendor.src + '/styles/bootstrap-datetimepicker.min.css'
+	  
     ])
     .pipe(plumber())
+	.pipe(config.production ? minifyCSS() : $.util.noop())
     .pipe(concat("vendor.css"));
 
-  //if (environment === 'production') {
-   // stream.pipe(minify());
-  //}
-
-  stream.pipe(gulp.dest(paths.dest + 'css/'));
+   return stream.pipe(gulp.dest(config.buildDir + '/css/'));
+  
 });
 
 // Compilamos archivos JS de terceros (ejemplo: boostrap.js) y 
@@ -29,24 +31,28 @@ gulp.task('vendor-styles', function() {
 // Copiaremos ese archivo a: paths.dest + '/js'
 gulp.task('vendor-scripts', function() {
   var stream = gulp.src([
-      paths.vendor + 'scripts/jquery.js',
-      paths.vendor + 'scripts/bootstrap.js'
-      //paths.vendor + 'scripts/underscore.js',
-      //paths.vendor + 'scripts/backbone.js',
-      //paths.vendor + 'scripts/backbone.syphon.js',
-      //paths.vendor + 'scripts/backbone.marionette.js'
+      config.vendor.src + '/scripts/jquery.js',
+      config.vendor.src + '/scripts/bootstrap.js',
+	  config.vendor.src + '/scripts/moment-with-locales.min.js',
+	  config.vendor.src + '/scripts/bootstrap-datetimepicker.min.js'
+	  
     ])
     .pipe(plumber())
+	.pipe(config.production ? uglify() : $.util.noop())
     .pipe(concat("vendor.js"));
 
-  //if (environment === 'production') {
-  //  stream.pipe(uglify());
-  //}
 
-  stream.pipe(gulp.dest(paths.dest + 'js/'));
+   return stream.pipe(gulp.dest(config.buildDir + '/js/'));
 });
 
-module.exports = function() {
+gulp.task('vendor-fonts', function(){
+    return gulp.src([config.vendor.src + '/fonts/**/*'])
+        .pipe(gulp.dest(config.buildDir + '/fonts/'));
+});
+
+module.exports = function(cb) {
   gulp.start('vendor-styles');  
   gulp.start('vendor-scripts');  
+  gulp.start('vendor-fonts');
+  cb(null);
 };

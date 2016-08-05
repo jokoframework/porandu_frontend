@@ -83,3 +83,151 @@ input.parsley-error {
     padding-left: 0;
    list-style: none;
 }
+
+/*Estilos css de la aplicación*/
+/* Fuentes */
+
+@font-face {
+     font-family: 'open-sans';
+     src: url('../fonts/open-sans/web fonts/regular/OpenSans-Regular-webfont.ttf') format('truetype');
+}
+
+body{
+  color: #222;
+  font-family: 'open-sans', helvetica, sans-serif;
+}
+
+a:hover, a:focus{
+  text-decoration: none!important;
+}
+
+.blue-text{
+  color: #00a8ff!important;
+}
+
+.clearfix{
+  clear: none!important;
+}
+
+.event-image{
+  max-height: 300px;
+  margin: 0 auto;
+}
+
+.time-label{
+  color: #ffffff;
+  position: absolute;
+  right: 30px;
+  top: 16px;
+  font-size: 18px;
+  background-color: #00a8ff;
+  padding: 4px;
+}
+
+.item-container{
+  margin-bottom: 35px;
+  padding-left:45px;
+}
+
+.item-detail{
+  background: #fff;
+  border-color: #eaeaea;
+  border: 1px solid #e3e3e3;
+  border-top-width: 1px;
+  border-radius: 4px;
+  padding: 30px;
+}
+
+.margin-tb-15{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.item-footer{
+  background-color: #fff;
+  border-bottom: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
+  padding: 20px 30px;
+}
+
+.lecture-link{
+  color: #222;
+}
+
+.lecture-link:hover{
+  color: #222;
+  text-decoration: none;
+}
+
+.vote-content{
+  color: #ffffff;
+  border-radius: 1px;
+  background-color: #00a8ff;
+  font-size: 22px;
+  min-width: 110px;
+  max-width: 160px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+
+.vote-link{
+  display: block;
+  text-align: right;
+  transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  text-align: right;
+}
+
+.vote-link:hover{
+  color:#8a8e91!important;
+}
+
+.vote-link i{
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.question-content{
+  padding-left: 0px;
+}
+
+#app-container{
+  background-color: #f7f7f7 !important;
+}
+
+#lectures{
+  margin-top: 20px;
+}
+
+#lectures::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #eaeaea;
+  left: 25px;
+  margin-left: -1px;
+  display: block;
+}
+
+#new-question{
+  position: absolute;
+  right: 15px;
+  color: #ffffff;
+  background-color: #00a8ff;
+  padding: 12px;
+  font-size: 18px;
+  top: 15px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+#new-question:hover{
+  background-color: #31b9ff!important;
+}
